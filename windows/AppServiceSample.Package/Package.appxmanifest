@@ -43,9 +43,6 @@
 			</uap:VisualElements>
 			<Extensions>
 				<desktop:Extension Category="windows.fullTrustProcess" Executable="HelloWorldNet\HelloWorldNet.exe" />
-				<uap:Extension Category="windows.appService" >
-					<uap:AppService Name="ServiceChannel"/>
-				</uap:Extension>
 				<uap4:Extension Category="windows.loopbackAccessRules">
 					<uap4:LoopbackAccessRules>
 						<uap4:Rule Direction="in" PackageFamilyName="AppServiceSample_e627vcndsd2rc" />
