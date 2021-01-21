@@ -71,13 +71,6 @@ void App::OnSuspending([[maybe_unused]] IInspectable const& sender, [[maybe_unus
     // Save application state and stop any background activity
 }
 
-void App::OnBackgroundActivated(activation::BackgroundActivatedEventArgs const& e) 
-{
-    BackgroundTaskDeferral deferral = e.TaskInstance().GetDeferral();
-    AppServiceTriggerDetails details = e.TaskInstance().TriggerDetails().as<AppServiceTriggerDetails>();
-    AppServiceConnection connection = details.AppServiceConnection();
-}
-
 /// <summary>
 /// Invoked when Navigation to a certain page fails
 /// </summary>

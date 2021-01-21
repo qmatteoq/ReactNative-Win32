@@ -22,7 +22,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Label="ReactNativeWindowsProps">
     <ReactNativeWindowsDir Condition="'$(ReactNativeWindowsDir)' == ''">$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), 'node_modules\react-native-windows\package.json'))\node_modules\react-native-windows\</ReactNativeWindowsDir>
-	<ConsumeCSharpModules>true</ConsumeCSharpModules>
+    <ConsumeCSharpModules>true</ConsumeCSharpModules>
   </PropertyGroup>
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|ARM">
@@ -81,7 +81,7 @@
     <Import Project="PropertySheet.props" />
   </ImportGroup>
   <ImportGroup Label="ReactNativeWindowsPropertySheets">
-	  
+
     <Import Project="$(ReactNativeWindowsDir)\PropertySheets\external\Microsoft.ReactNative.Uwp.CppApp.props" Condition="Exists('$(ReactNativeWindowsDir)\PropertySheets\External\Microsoft.ReactNative.Uwp.CppApp.props')" />
     <Import Project="..\packages\$(WinUIPackageProps)" Condition="'$(WinUIPackageProps)'!='' And Exists('..\packages\$(WinUIPackageProps)')" />
   </ImportGroup>

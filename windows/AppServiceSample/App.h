@@ -12,7 +12,6 @@ namespace winrt::AppServiceSample::implementation
         void OnLaunched(activation::LaunchActivatedEventArgs const&);
         void OnSuspending(IInspectable const&, Windows::ApplicationModel::SuspendingEventArgs const&);
         void OnNavigationFailed(IInspectable const&, Windows::UI::Xaml::Navigation::NavigationFailedEventArgs const&);
-        void OnBackgroundActivated(activation::BackgroundActivatedEventArgs const& e);
       private:
         using super = AppT<App>;
     };
