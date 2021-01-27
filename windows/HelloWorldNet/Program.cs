@@ -34,7 +34,6 @@ namespace HelloWorldNet
             var watcher = info.FirstOrDefault().CreateResourceGroupWatcher();
             watcher.ExecutionStateChanged += Watcher_ExecutionStateChanged;
             watcher.Start();
-
         }
 
         private static void Watcher_ExecutionStateChanged(AppResourceGroupInfoWatcher sender, AppResourceGroupInfoWatcherExecutionStateChangedEventArgs args)
