@@ -42,16 +42,21 @@ const App: () => React$Node = () => {
   const[name, setName] = useState("");
   const[surname, setSurname] = useState("");
 
-const sendMessage = async() => {
-  var message = await NativeModules.ServiceChannelModule.sendMessage(name, surname);
-  setApiData(message);
-}
+  const sendMessage = async() => {
+    var message = await NativeModules.ServiceChannelModule.sendMessage(name, surname);
+    setApiData(message);
+  }
 
-const sendDirectMessage = async() => {
-  var result = await fetch("http://localhost:5000/api/sdk?name="+name+"&surname="+surname);
-  var message = await result.text();
-  setApiData(message);
-}
+  const sendDirectMessage = async() => {
+    var result = await fetch("http://localhost:5000/api/sdk?name="+name+"&surname="+surname);
+    var message = await result.text();
+    setApiData(message);
+  }
+
+  const sendPipeMessage = async () => {
+    var result = await NativeModules.ServiceChannelModule.sendPipeMessage(name);
+    setApiData(result);
+  }
 
   return (
     <>
@@ -73,6 +78,7 @@ const sendDirectMessage = async() => {
               <TextInput onChangeText={text => setSurname(text)}  style={{ height: 40, borderColor: 'gray', borderWidth: 1 }} />
               <Button title="Send message" onPress={sendMessage} />
               <Button title="Send direct message" onPress={sendDirectMessage} />
+              <Button title="Send pipe message" onPress={sendPipeMessage} />
               <Text>{apiData}</Text>
           </View>
         </ScrollView>
