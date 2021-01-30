@@ -73,4 +73,4 @@ jobs:
           yarn tsc
           
        - name: Build
-         run: msbuild ${{env.projectFile}} /p:Configuration=${{env.configuration}} /p:AppxBundlePlatforms=${{env.platform}} /p:AppxPackageDir=${{github.workspace}}\AppPackages /p:AppxBundle=Never /p:UapAppxPackageBuildMode=SideloadOnly /p:AppxPackageSigningEnabled=false
+         run: msbuild /restore ${{env.projectFile}} /p:Configuration=${{env.configuration}} /p:AppxBundlePlatforms=${{env.platform}} /p:AppxPackageDir=${{github.workspace}}\AppPackages /p:AppxBundle=Never /p:UapAppxPackageBuildMode=SideloadOnly /p:AppxPackageSigningEnabled=false
