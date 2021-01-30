@@ -15,7 +15,7 @@ on:
 
 env:  
   solutionFile: .\windows\AppServiceSample.sln
-  projectFile: .\AppServiceSample.Package\AppServiceSample.Package.wapproj
+  projectFile: .\windows\AppServiceSample.Package\AppServiceSample.Package.wapproj
   platform: x64
   configuration: Release
 
