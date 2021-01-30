@@ -49,6 +49,9 @@
 						<uap4:Rule Direction="out" PackageFamilyName="AppServiceSample_e627vcndsd2rc" />
 					</uap4:LoopbackAccessRules>
 				</uap4:Extension>
+				<uap:Extension Category="windows.protocol">
+					<uap:Protocol Name="mashreq"/>
+				</uap:Extension>
 			</Extensions>
 		</Application>
 	</Applications>

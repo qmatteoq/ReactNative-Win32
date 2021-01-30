@@ -16,7 +16,8 @@ import {
   StatusBar,
   NativeModules,
   Button,
-  TextInput
+  TextInput,
+  Linking
 } from 'react-native';
 
 import {
@@ -32,7 +33,8 @@ const App: () => React$Node = () => {
   useEffect(() => {
 
     async function launchProcess() {
-      await NativeModules.ServiceChannelModule.launchFullTrustProcess();
+      // await NativeModules.ServiceChannelModule.launchFullTrustProcess();
+    
     }
 
     launchProcess();
@@ -43,8 +45,11 @@ const App: () => React$Node = () => {
   const[surname, setSurname] = useState("");
 
 const sendMessage = async() => {
-  var message = await NativeModules.ServiceChannelModule.sendMessage(name, surname);
-  setApiData(message);
+  // var message = await NativeModules.ServiceChannelModule.sendMessage(name, surname);
+  // setApiData(message);
+  const url = await Linking.getInitialURL();
+  console.log(url);
+  setApiData(url);
 }
 
 const sendDirectMessage = async() => {
