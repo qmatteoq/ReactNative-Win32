@@ -13,6 +13,12 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
+env:  
+  solutionFile: .\windows\AppServiceSample.sln
+  projectFile: .\AppServiceSample.Package\AppServiceSample.Package.wapproj
+  platform: x64
+  configuration: Release
+
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -66,5 +72,5 @@ jobs:
           yarn build
           yarn tsc
           
-       - name: Run Windows x64 release
-         run: npx react-native run-windows --arch x64 --release --no-packager --logging
+       - name: Build
+         run: msbuild ${{env.projectFile}} /p:Configuration=${{env.configuration}} /p:AppxBundlePlatforms=${{env.platform}} /p:AppxPackageDir=${{github.workspace}}\AppPackages /p:AppxBundle=Never /p:UapAppxPackageBuildMode=SideloadOnly /p:AppxPackageSigningEnabled=false
