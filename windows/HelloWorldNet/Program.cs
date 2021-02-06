@@ -35,22 +35,26 @@ namespace HelloWorldNet
                 //string baseAddress = "http://localhost:5000/";
                 //WebApp.Start<Startup>(url: baseAddress);
 
-                var sid = ApplicationData.Current.LocalSettings.Values["PackageSid"].ToString();
+var sid = ApplicationData.Current.LocalSettings.Values["PackageSid"].ToString();
 
-                PipeSecurity pipeSecurity = new PipeSecurity();
-                //SecurityIdentifier id = new SecurityIdentifier(sid);
-                //PipeAccessRule rule = new PipeAccessRule(id, PipeAccessRights.ReadWrite, System.Security.AccessControl.AccessControlType.Allow);
-                //pipeSecurity.SetAccessRule(rule);
+PipeSecurity pipeSecurity = new PipeSecurity();
 
-                Vanara.PInvoke.AdvApi32.SafeAllocatedSID appSid;
-                Vanara.PInvoke.UserEnv.DeriveAppContainerSidFromAppContainerName("AppServiceSample_e627vcndsd2rc", out appSid);
-                var ptr = appSid.DangerousGetHandle();
+SecurityIdentifier id = new SecurityIdentifier(sid);
+PipeAccessRule rule = new PipeAccessRule(id, PipeAccessRights.ReadWrite, System.Security.AccessControl.AccessControlType.Allow);
+pipeSecurity.SetAccessRule(rule);
 
-                var id = new SecurityIdentifier(ptr);
+var logonId = ClsLookupAccountName.GetLogonId();
 
+SecurityIdentifier logonSid = new SecurityIdentifier(logonId);
+PipeAccessRule logonRule = new PipeAccessRule(logonSid, PipeAccessRights.ReadWrite, System.Security.AccessControl.AccessControlType.Allow);
+pipeSecurity.SetAccessRule(logonRule);
 
-                var pipe = new NamedPipeServerStream(@"LOCAL\pipe", PipeDirection.InOut, 1, PipeTransmissionMode.Message, PipeOptions.Asynchronous, 0x4000, 0x400);
-                var acInfo = pipe.GetAccessControl();
+//Vanara.PInvoke.AdvApi32.SafeAllocatedSID appSid;
+//Vanara.PInvoke.UserEnv.DeriveAppContainerSidFromAppContainerName("AppServiceSample_e627vcndsd2rc", out appSid);
+//var ptr = appSid.DangerousGetHandle();
+
+var pipe = new NamedPipeServerStream(@"LOCAL\pipe", PipeDirection.InOut, NamedPipeServerStream.MaxAllowedServerInstances, PipeTransmissionMode.Message, PipeOptions.Asynchronous, 0x4000, 0x400, pipeSecurity, HandleInheritability.Inheritable);
+var acInfo = pipe.GetAccessControl();
                 
 
                 Console.WriteLine("Waiting for connection");

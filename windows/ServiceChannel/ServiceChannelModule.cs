@@ -50,7 +50,7 @@ namespace ServiceChannel
             Vanara.PInvoke.Kernel32.ProcessIdToSessionId(processId, out sessionId);
 
             Debug.WriteLine($"Session id: {sessionId}");
-            Debug.WriteLine($"Sessions\\{sessionId}\\AppContainerNamedObjects\\{ApplicationData.Current.LocalSettings.Values["PackageSid"]}\\mypipe");
+            var foo = $"Sessions\\{sessionId}\\AppContainerNamedObjects\\{ApplicationData.Current.LocalSettings.Values["PackageSid"]}\\pipe";
 
             var client = new NamedPipeClientStream(".", @"LOCAL\pipe", PipeDirection.InOut, PipeOptions.Asynchronous);
 
